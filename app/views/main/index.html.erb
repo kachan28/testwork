@@ -1,0 +1,38 @@
+<h1>Tasks</h1>
+
+<ul>
+    <% @tasks.each do |task| %>
+        <li>
+            <h1>
+                <%= task.title %>
+            </h1>
+            <% @todos = task.todos %>
+                <% @todos.each do |todo| %>
+                    <ul>
+                        <li>
+                            <%= todo.text %>
+                        </li>
+                    </ul>
+                    <% end %>
+        </li>
+
+        <% end %>
+</ul>
+
+<h1>Новая задача</h1>
+<%= form_for :todocreate, local: true do |form| %>
+    <p>
+        <%= form.label :title %><br>
+            <%= form.text_field :title %>
+    </p>
+
+    <p>
+        <%= form.label :text %><br>
+            <%= form.text_area :text %>
+    </p>
+
+    <p>
+        <%= link_to 'ОТМЕНА'%>
+            <%= link_to 'OK', :action => "index"%>
+    </p>
+    <% end %>
